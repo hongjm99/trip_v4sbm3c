@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.manager.ManagerDAOInter">
+  <!-- 로그인 -->
+  <select id="login" resultType="int" parameterType="dev.mvc.manager.ManagerVO">
+    SELECT COUNT(*) as cnt
+    FROM manager
+    WHERE id=#{id} AND passwd=#{passwd} 
+  </select>
+  
+  <!-- 관리자 정보 -->
+  <select id="read_by_id" resultType="dev.mvc.manager.ManagerVO" parameterType ="String" >
+    SELECT managerno, id, passwd, mname, mdate, grade 
+    FROM manager
+    WHERE id=#{id}
+  </select>
+  
+  <!-- managerno를 통한 회원 정보 -->
+  <select id="read" resultType="dev.mvc.manager.ManagerVO" parameterType ="int" >
+    SELECT managerno, id, passwd, mname, mdate, grade 
+    FROM manager
+    WHERE managerno=#{managerno}
+  </select>
+  
+</mapper>
